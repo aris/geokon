@@ -1,0 +1,117 @@
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+
+
+public class Hr_Properties extends JFrame {
+
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel Panel;
+	private Window window1;
+
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Hr_Properties window = new Hr_Properties();
+					window.Panel.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	
+	public Hr_Properties() {
+
+		Panel = new JPanel();
+		
+		setResizable(false);
+		setTitle("епикоцес HR");
+		setContentPane(Panel);
+		getContentPane().setBackground(Color.white);
+		
+		setBounds(150, 150, 800, 500);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		setLocationRelativeTo ( null );
+		
+		JLabel Label1 = new JLabel("");
+		Image img1 = new ImageIcon(this.getClass().getResource("/How-to-Run-an-effective-Human-Resources-Department.jpg")).getImage();
+		Label1.setIcon(new ImageIcon(img1));
+		Label1.setBounds(348, 33, 394, 300);
+		getContentPane().add(Label1);
+		
+		
+		JButton  CreateButton= new JButton("дглиоуяциа");
+		
+		CreateButton.setFont(new Font("Tahoma", Font.CENTER_BASELINE, 15));
+		CreateButton.setBounds(100, 80, 180, 50);
+		CreateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Create cf = new Create();
+				cf.setVisible(true);
+			}
+		});
+		getContentPane().add(CreateButton);
+		
+		
+		JButton  Editbutton= new JButton("епенеяцасиа");
+		
+		Editbutton.setFont(new Font("Tahoma", Font.CENTER_BASELINE, 15));
+		Editbutton.setBounds(100, 180, 180, 50);
+		Editbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Edit edit1 = new Edit();
+				edit1.setVisible(true);
+			}
+		});
+		getContentPane().add(Editbutton);
+		
+		
+		JButton  Delbutton= new JButton("диацяажг");
+		
+		Delbutton.setFont(new Font("Tahoma", Font.CENTER_BASELINE, 15));
+		Delbutton.setBounds(100, 280, 180, 50);
+		Delbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Delete inf = new Delete();
+				inf.setVisible(true);
+			}
+		});
+	
+		getContentPane().add(Delbutton);
+		
+		
+		JButton ExitButton = new JButton("енодос");
+		
+		ExitButton.setFont(new Font("Tahoma", Font.CENTER_BASELINE, 15));
+		ExitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Panel.dispatchEvent(new WindowEvent(window1, WindowEvent.WINDOW_CLOSING));
+			}
+		});
+		ExitButton.setBounds(100, 380, 180, 50);
+		getContentPane().add(ExitButton);
+		
+	
+	}	
+}

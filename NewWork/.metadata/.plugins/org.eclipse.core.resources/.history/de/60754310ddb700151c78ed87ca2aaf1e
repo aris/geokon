@@ -1,0 +1,87 @@
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+public class Create extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel Panel;	
+	private JTextField CompName;
+	private JButton ExitButton;
+	String comp;
+	
+	
+	public int i;
+		
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Create window = new Create();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	}
+	
+public Create(){
+	
+	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	setBounds(480, 150, 500, 400);
+	Panel = new JPanel();
+		
+	Panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+	setContentPane(Panel);
+	Panel.setLayout(null);
+		
+	JButton CreateButton = new JButton("ƒ«Ã…œ’—√…¡");
+	CreateButton.setFont(new Font("Serif", Font.CENTER_BASELINE, 13));
+	CreateButton.setBounds(160, 123, 160, 50);
+	Panel.add(CreateButton);
+		
+	
+	
+	
+	JButton ExitButton = new JButton("∏Œœƒœ”");
+	ExitButton.setFont(new Font("Serif", Font.CENTER_BASELINE, 13));
+	ExitButton.setBounds(160, 200, 160, 50);
+	Panel.add(ExitButton);
+		
+	
+	
+	
+	CompName = new JTextField();
+	
+	CompName.setBounds(160, 54, 158, 44);
+	Panel.add(CompName);
+	CompName.setColumns(10);
+	
+	JLabel lblNewLabel = new JLabel("ƒÁÏÈÔ˝Ò„ÁÛÂ ‘ÏﬁÏ·");
+	lblNewLabel.setFont(new Font("Serif", Font.BOLD, 18));
+	lblNewLabel.setBounds(160, 17, 158, 33);
+	Panel.add(lblNewLabel);
+	
+	CreateButton.setFont(new Font("Serif", Font.CENTER_BASELINE, 14));
+	CreateButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			comp=CompName.getText();
+			}
+	
+	});
+}
+}
+
+

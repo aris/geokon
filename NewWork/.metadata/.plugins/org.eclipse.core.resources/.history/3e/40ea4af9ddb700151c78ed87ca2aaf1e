@@ -1,0 +1,137 @@
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+public class Hr_login extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	 private JTextField HrText;
+	private JPasswordField HrPass;
+	private JPanel Panel;
+	
+	private JButton Lbutton = new JButton("≈…”œƒœ”");
+	
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Hr_login frame = new Hr_login();
+					frame.Panel.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	public Hr_login() {
+		Hr_login1();
+		
+	}
+	
+	public void Hr_login1(){
+		
+		
+		
+		setTitle("”˝Ì‰ÂÛÁ ≈Ò„·Ê¸ÏÂÌÔı");
+		setBounds(780, 250, 400, 330);
+		Panel = new JPanel();
+		
+		Panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		setContentPane(Panel);
+		Panel.setLayout(null);
+		Panel.getRootPane().setDefaultButton(Lbutton);
+		
+		
+		HrText = new JTextField();
+		HrText.setFont(new Font("Serif", Font.ROMAN_BASELINE, 13));
+		HrText.setBounds(140, 40, 125, 30);
+		Panel.add(HrText);
+		HrText.setColumns(10);
+		
+		
+		JLabel HrLabel = new JLabel("ºÌÔÏ·:");
+		HrLabel.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
+		HrLabel.setBounds(40, 39, 89, 25);
+		Panel.add(HrLabel);
+		
+		
+		HrPass = new JPasswordField();
+		HrPass.setFont(new Font("Serif", Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
+		HrPass.setBounds(140, 125, 125, 30);
+		Panel.add(HrPass);
+		HrPass.setColumns(10);
+		
+		
+		JLabel HrLabel1 = new JLabel(" ˘‰ÈÍ¸Ú:");
+		HrLabel1.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
+		HrLabel1.setBounds(40, 123, 89, 25);
+		Panel.add(HrLabel1);
+		
+		JButton ≈button = new JButton("≈Œœƒœ”");
+		
+		≈button.setFont(new Font("Serif", Font.CENTER_BASELINE, 13));
+		≈button.setBounds(190, 223, 95, 25);
+		Panel.add(≈button);
+		
+			
+		≈button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
+	
+		Lbutton.setFont(new Font("Serif", Font.CENTER_BASELINE, 13));
+		Lbutton.setBounds(80, 223, 95, 25);
+		Panel.add(Lbutton);
+		
+		
+		setVisible(true);
+		actionlogin();
+		}
+	
+	
+	
+		public void actionlogin(){
+		Lbutton.addActionListener(new ActionListener() {
+		@SuppressWarnings("deprecation")
+		public void actionPerformed(ActionEvent arg0) {
+		String puname = HrText.getText();
+		String ppaswd = HrPass.getText();
+		if(puname.equals("test") && ppaswd.equals("12345")) {
+		Hr_Properties Properties = new Hr_Properties();
+		Properties.setVisible(true);
+		
+		
+		} else {
+
+		JOptionPane.showMessageDialog(null,"À‹ËÔÚ ºÌÔÏ· /  ˘‰ÈÍ¸Ú");
+		HrText.setText("");
+		HrPass.setText("");
+		HrText.requestFocus();
+		}
+		
+
+		}
+		});
+		}
+		}
+	
+	
+

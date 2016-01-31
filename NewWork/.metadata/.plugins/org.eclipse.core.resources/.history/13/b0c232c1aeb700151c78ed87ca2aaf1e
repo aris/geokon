@@ -1,0 +1,17 @@
+import java.sql.DriverManager;
+
+public class test2 {
+	Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+	String connectionUrl= "jdbc:mysql://διακομιστής:3306/βάση";
+	String connectionUser= "όνομα_χρήστη"; 
+	String connectionPassword= "κωδικός";
+conn= DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword); stmt = conn.createStatement();
+ stmt = conn.createStatement(); 
+ rs= stmt.executeQuery("SELECT * FROM πίνακας");
+ 
+	while (rs.next()) { Object rs;
+	String id = ((Object) rs).getString("id");
+	String firstName= rs.getString("name"); String lastName= rs.getString("surname"); 
+	System.out.println("ID: " + id + ", First Name: " + firstName + ", Last Name: " + lastName); }
+}
+}

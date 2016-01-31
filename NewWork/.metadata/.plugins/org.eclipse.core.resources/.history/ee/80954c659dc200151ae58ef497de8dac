@@ -1,0 +1,103 @@
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+
+
+public class Hr_Properties extends JFrame {
+
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel Panel;
+
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Hr_Properties window = new Hr_Properties();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	public Hr_Properties() {
+		Hr_Properties1();
+		
+	}
+	
+	private void Hr_Properties1() {
+
+		setTitle("идиотгтес еяцафолемоу");
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(150, 150, 676, 402);
+		Panel = new JPanel();
+			
+		Panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		setContentPane(Panel);
+		Panel.setLayout(null);
+		
+		
+		JLabel Label1 = new JLabel("");
+		Image img1 = new ImageIcon(this.getClass().getResource("/How-to-Run-an-effective-Human-Resources-Department.jpg")).getImage();
+		Label1.setIcon(new ImageIcon(img1));
+		Label1.setBounds(0, 0, 394, 341);
+		Panel.add(Label1);
+		
+		
+		JButton  CreateButton= new JButton("дглиоуяциа/диацяажг");
+		
+		CreateButton.setFont(new Font("Serif", Font.CENTER_BASELINE, 15));
+		CreateButton.setBounds(403, 76, 240, 50);
+		CreateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Create cf = new Create();
+				cf.setVisible(true);
+			}
+		});
+		Panel.add(CreateButton);
+		
+		
+		JButton  Editbutton= new JButton("епенеяцасиа");
+		
+		Editbutton.setFont(new Font("Serif", Font.CENTER_BASELINE, 15));
+		Editbutton.setBounds(443, 156, 158, 50);
+		Editbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Edit edit1 = new Edit();
+				edit1.setVisible(true);
+			}
+		});
+		Panel.add(Editbutton);
+		
+		
+		JButton ExitButton = new JButton("енодос");
+		
+		ExitButton.setFont(new Font("Serif", Font.CENTER_BASELINE, 15));
+		ExitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		ExitButton.setBounds(443, 230, 158, 50);
+		Panel.add(ExitButton);
+		
+	
+	}	
+}

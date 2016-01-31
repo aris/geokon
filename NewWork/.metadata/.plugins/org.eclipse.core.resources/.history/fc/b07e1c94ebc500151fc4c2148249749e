@@ -1,0 +1,93 @@
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+
+public class Info extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel Panel2;
+	
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Info frame = new Info();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+
+	public Info(){
+		
+		setTitle("Πληροφορίες Εταιρείας");
+		setBounds(780, 250, 400, 330);
+		Panel2 = new JPanel();		
+		Panel2.setBackground(new Color(0, 0, 255));
+		Panel2.setBorder(new EmptyBorder(10, 10, 10, 10));
+		setContentPane(Panel2);
+		Panel2.setLayout(null);
+		
+	    this.setTitle("Πληροφορίες");   
+	    this.setSize(450, 450);
+	    getContentPane().setLayout(new GridLayout(8, 1));
+	    
+	    MediaTracker mt = new MediaTracker(this);
+	    Image bgimage = Toolkit.getDefaultToolkit().getImage("abstract_color_background_picture_8016-wide.jpg");
+	    mt.addImage(bgimage, 0);
+	    try {
+	      mt.waitForAll();
+	    } catch (InterruptedException e) {
+	      e.printStackTrace();
+	    }
+
+	    JLabel instructions = new JLabel("Η HRM Consulting είναι ένα λογισμικό που έχει ως στόχο την ");
+	    instructions.setForeground(new Color(255, 215, 0));
+	    JLabel instructions2 = new JLabel("διαχείριση του πρoσωπικού της εταιρέιας σας.");
+	    instructions2.setForeground(new Color(255, 215, 0));
+	    JLabel instructions3 = new JLabel("Περισσότερες πληροφορίες μπορείτε να βρείτε στο site μας hrm-con.gr ");
+	    instructions3.setForeground(new Color(255, 215, 0));
+	    JLabel instructions5 = new JLabel(" ΠΡΟΓΡΑΜΜΑΤΙΣΤΕΣ ΛΟΓΙΣΜΙΚΟΥ :");
+	    instructions5.setForeground(new Color(255, 215, 0));
+	    JLabel instructions6 = new JLabel(" Γεωργακόπουλος Αριστείδης ");
+	    instructions6.setForeground(new Color(255, 215, 0));
+	    JLabel instructions7 = new JLabel(" Κονίδης Αναστάσιος ");
+	    instructions7.setForeground(new Color(255, 215, 0));
+	    JLabel instructions8 = new JLabel(" Ιάσωνας Σαρλάμης ");
+	    instructions8.setForeground(new Color(255, 215, 0));
+	    
+	    getContentPane().add(instructions);
+	    getContentPane().add(instructions2);
+	    getContentPane().add(instructions3);
+	    getContentPane().add(instructions5);
+	    getContentPane().add(instructions6);
+	    getContentPane().add(instructions7);
+	    getContentPane().add(instructions8);
+	    
+	   
+	    
+	    
+
+
+	
+		
+		
+		
+	}
+	
+	
+
+
+}

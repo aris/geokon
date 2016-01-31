@@ -1,0 +1,44 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+public class Delete extends JFrame {
+
+	public void setVisible() {
+		
+		
+	}
+	private static final long serialVersionUID = 1L;
+	private JPanel Panel;
+
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Create window = new Create();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		
+	}
+	
+public Delete(){
+		
+	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	setBounds(780, 250, 400, 330);
+	Panel = new JPanel();
+		
+	Panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+	setContentPane(Panel);
+	Panel.setLayout(null);
+		
+}
+	
+}

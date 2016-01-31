@@ -1,0 +1,19 @@
+import javax.swing.JList;
+
+public class example {
+  public static void main(String[] argv) throws Exception {
+    String[] items = { "A", "B", "C", "D" };
+    JList list = new JList(items);
+    // Get the index of all the selected items
+    int[] selectedIx = list.getSelectedIndices();
+
+    // Get all the selected items using the indices
+    for (int i = 0; i < selectedIx.length; i++) {
+      Object sel = list.getModel().getElementAt(selectedIx[i]);
+    }
+
+    // Get the index of the first selected item
+    int firstSelIx = list.getSelectedIndex();
+
+  }
+}

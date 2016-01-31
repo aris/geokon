@@ -1,0 +1,149 @@
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import com.mysql.jdbc.PreparedStatement;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+
+public class Ceo_login extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+    private JTextField CeoText;
+	private JPasswordField CeoPass;	
+	private JPanel Panel;
+	private JButton Lbutton = new JButton("≈…”œƒœ”");
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Ceo_login frame = new Ceo_login();
+					frame.Panel.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	
+	
+	
+	public Ceo_login(){
+				
+		setTitle(" ”˝Ì‰ÂÛÁ –ÒÔÈÛÙ·Ï›ÌÔı");	
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(780, 250, 400, 330);
+		Panel = new JPanel();
+			
+		Panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		setContentPane(Panel);
+		Panel.setLayout(null);
+		Panel.getRootPane().setDefaultButton(Lbutton);
+		CeoText = new JTextField();
+		CeoText.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 15));
+		CeoText.setBounds(140, 40, 125, 30);
+		Panel.add(CeoText);
+		CeoText.setColumns(10);
+				
+		JLabel CeoLabel = new JLabel("ºÌÔÏ·:");
+		CeoLabel.setForeground(new Color(255, 215, 0));
+		CeoLabel.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
+		CeoLabel.setBounds(40, 39, 89, 25);
+		Panel.add(CeoLabel);
+			
+		CeoPass = new JPasswordField();
+		CeoPass.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 15));
+		CeoPass.setBounds(140, 125, 125, 30);
+		Panel.add(CeoPass);
+		CeoPass.setColumns(10);
+				
+		JLabel CeoLabel1 = new JLabel(" ˘‰ÈÍ¸Ú:");
+		CeoLabel1.setForeground(new Color(255, 215, 0));
+		CeoLabel1.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
+		CeoLabel1.setBounds(40, 123, 89, 25);
+		Panel.add(CeoLabel1);
+				
+		JButton ≈button = new JButton("≈Œœƒœ”");
+		
+		≈button.setFont(new Font("Serif", Font.CENTER_BASELINE, 13));
+		≈button.setBounds(190, 223, 95, 25);
+		Panel.add(≈button);
+		
+			
+		≈button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
+		
+		
+		Lbutton.setFont(new Font("Serif", Font.CENTER_BASELINE, 13));
+		Lbutton.setBounds(80, 223, 95, 25);
+		Panel.add(Lbutton);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\User\\Desktop\\1797990.jpg"));
+		lblNewLabel.setBounds(0, 0, 384, 291);
+		Panel.add(lblNewLabel);
+			
+		setVisible(true);
+		actionlogin();
+		}
+	
+		public void actionlogin(){
+		Lbutton.addActionListener(new ActionListener() {
+		@SuppressWarnings("deprecation")
+		public void actionPerformed(ActionEvent arg0) {
+			try {
+				String query="SELECT * FROM users WHERE username=? AND pass_word=? AND id=1 ";
+				java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hrm","root","root");
+				PreparedStatement prepareStat=(PreparedStatement) conn.prepareStatement(query);
+				prepareStat.setString(1,CeoText.getText());
+				prepareStat.setString(2,CeoPass.getText());		
+				ResultSet rs=prepareStat.executeQuery();
+				int count =0 ;
+				while(rs.next()){
+					count++;						
+				}
+				if(count==1)
+				{	
+					JOptionPane.showMessageDialog(null, "≈ÈÙı˜ﬂ· ≈ÈÛ¸‰Ôı");
+					dispose();
+					Ceo_valuation ceo = new Ceo_valuation();
+					ceo.setVisible(true);
+					
+				}				
+				else{				
+					JOptionPane.showMessageDialog(null, "À‹ËÔÚ ◊ÒﬁÛÙÁÚ/Í˘‰ÈÍ¸Ú");
+					CeoText.setText("");
+					CeoPass.setText("");
+				}
+				rs.close();
+				prepareStat.close();
+				conn.close();
+			}catch(Exception ex){			
+				JOptionPane.showMessageDialog(null, "ƒ≈Õ ’–¡—◊≈… ”’Õƒ≈”« ”‘« ¬¡”«");
+			}
+		}
+		
+	});
+		}
+		}
+	
+	
+
+
+

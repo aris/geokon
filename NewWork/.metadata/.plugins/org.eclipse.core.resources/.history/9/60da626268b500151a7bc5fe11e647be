@@ -1,0 +1,119 @@
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+public class Hr_login extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	 private JTextField HrText;
+	private JPasswordField HrPass;
+	
+	private JPanel Panel;
+	
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Hr_login frame = new Hr_login();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public Hr_login(){
+		
+		setTitle("”˝Ì‰ÂÛÁ ≈Ò„·Ê¸ÏÂÌÔı");
+		setBounds(780, 250, 400, 330);
+		Panel = new JPanel();
+		
+		Panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		setContentPane(Panel);
+		Panel.setLayout(null);
+		
+		
+		
+		HrText = new JTextField();
+		HrText.setFont(new Font("Tahoma", Font.CENTER_BASELINE, 13));
+		HrText.setBounds(140, 40, 125, 30);
+		Panel.add(HrText);
+		HrText.setColumns(10);
+		
+		
+		JLabel HrLabel = new JLabel("ºÌÔÏ·:");
+		HrLabel.setFont(new Font("Tahoma", Font.CENTER_BASELINE, 18));
+		HrLabel.setBounds(40, 39, 89, 25);
+		Panel.add(HrLabel);
+		
+		
+		HrPass = new JPasswordField();
+		HrPass.setFont(new Font("Tahoma", Font.CENTER_BASELINE, 13));
+		HrPass.setBounds(140, 125, 125, 30);
+		Panel.add(HrPass);
+		HrPass.setColumns(10);
+		
+		
+		JLabel HrLabel1 = new JLabel(" ˘‰ÈÍ¸Ú:");
+		HrLabel1.setFont(new Font("Tahoma", Font.CENTER_BASELINE, 18));
+		HrLabel1.setBounds(40, 123, 89, 25);
+		Panel.add(HrLabel1);
+		
+		JButton Lbutton = new JButton("≈…”œƒœ”");
+		
+		Lbutton.setBounds(80, 223, 89, 25);
+		Panel.add(Lbutton);
+		
+		JButton ≈button = new JButton("≈Œœƒœ”");
+		
+		
+		≈button.setBounds(190, 223, 89, 25);
+		Panel.add(≈button);
+		
+		
+		≈button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+			
+		Lbutton.addActionListener(new ActionListener()
+		{
+		  public void actionPerformed(ActionEvent e)
+		  {
+		    
+			
+		    JButton source = (JButton) e.getSource();
+			JOptionPane.showMessageDialog(source, source.getText() + " button has been pressed");
+		    
+		  }
+		});
+		
+		
+		
+		
+	}
+	
+	
+
+
+}

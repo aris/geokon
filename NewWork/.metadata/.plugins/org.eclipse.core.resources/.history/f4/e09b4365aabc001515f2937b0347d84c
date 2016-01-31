@@ -1,0 +1,81 @@
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+public class Info extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel Panel2;
+	
+	
+	
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Info frame = new Info();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+
+	public Info(){
+		
+		setTitle("Πληροφορίες Εταιρείας");
+		setBounds(780, 250, 400, 330);
+		Panel2 = new JPanel();		
+		Panel2.setBorder(new EmptyBorder(10, 10, 10, 10));
+		setContentPane(Panel2);
+		Panel2.setLayout(null);
+		
+
+	
+	    this.setTitle("Πληροφορίες");
+	    
+	    this.setSize(450, 450);
+	    this.setLayout(new GridLayout(8, 1));
+
+	    JLabel instructions = new JLabel("Η HRM Consulting είναι ένα λογισμικό που έχει ως στόχο την ");
+	    JLabel instructions2 = new JLabel("διαχείριση του πρoσωπικού της εταιρέιας σας.");
+	    JLabel instructions3 = new JLabel("Περισσότερες πληροφορίες μπορείτε να βρείτε στο site μας hrm-con.gr ");
+	    JLabel instructions4 = new JLabel(" ");
+	    JLabel instructions5 = new JLabel(" ΠΡΟΓΡΑΜΜΑΤΙΣΤΕΣ ΛΟΓΙΣΜΙΚΟΥ :");
+	    JLabel instructions6 = new JLabel(" Γεωργακόπουλος Αριστείδης ");
+	    JLabel instructions7 = new JLabel(" Κονίδης Αναστάσιος ");
+	    JLabel instructions8 = new JLabel(" Ιάσωνας Σαρλάμης ");
+	    
+	    this.add(instructions);
+	    this.add(instructions2);
+	    this.add(instructions3);
+	    this.add(instructions4);
+	    this.add(instructions5);
+	    this.add(instructions6);
+	    this.add(instructions7);
+	    this.add(instructions8);
+	    
+	   
+	    
+	    
+
+
+	
+		
+		
+		
+	}
+	
+	
+
+
+}

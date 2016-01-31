@@ -1,0 +1,313 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import com.mysql.jdbc.PreparedStatement;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JComboBox;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+
+
+public class Edit extends JFrame {
+
+	int j=0;
+	String selected=null;
+	String Lista=null;
+	private static final long serialVersionUID = 1L;
+	private JPanel Panel;
+	private JTextField FirstNametxt;
+	private JTextField LastNameTxt;
+	private JTextField Salarytxt;	
+	private JTextField Section;
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Edit Edit = new Edit();
+					Edit.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});	
+	}	
+public Edit(){
+	
+		
+	setTitle("ΕΠΕΞΕΡΓΑΣΙΑ");	
+	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	setBounds(150, 150, 825, 522);
+	Panel = new JPanel();
+	int[] HRJlist =new int[200];
+	String[][] hr = new String[200][6];
+	
+	Panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+	setContentPane(Panel);
+	Panel.setLayout(null);
+	
+	JLabel sections = new JLabel("ΤΜΗΜΑΤΑ");
+	sections.setForeground(new Color(255, 215, 0));
+	sections.setFont(new Font("SansSerif", Font.BOLD, 18));
+	sections.setBounds(72, 31, 142, 30);
+	Panel.add(sections);
+	
+	FirstNametxt = new JTextField();
+	FirstNametxt.setFont(new Font("SansSerif", Font.BOLD, 12));
+	FirstNametxt.setForeground(new Color(0, 0, 0));
+	FirstNametxt.setBackground(new Color(0, 191, 255));
+	FirstNametxt.setBounds(20, 333, 114, 35);
+	Panel.add(FirstNametxt);
+	FirstNametxt.setColumns(10);
+	
+	LastNameTxt = new JTextField();
+	LastNameTxt.setFont(new Font("SansSerif", Font.BOLD, 12));
+	LastNameTxt.setForeground(new Color(0, 0, 0));
+	LastNameTxt.setBackground(new Color(0, 206, 209));
+	LastNameTxt.setColumns(10);
+	LastNameTxt.setBounds(155, 333, 114, 35);
+	Panel.add(LastNameTxt);
+	
+	Salarytxt = new JTextField();
+	Salarytxt.setFont(new Font("SansSerif", Font.BOLD, 12));
+	Salarytxt.setForeground(new Color(0, 0, 0));
+	Salarytxt.setBackground(new Color(0, 206, 209));
+	Salarytxt.setColumns(10);
+	Salarytxt.setBounds(297, 333, 114, 35);
+	Panel.add(Salarytxt);
+	
+	JLabel Name = new JLabel("ΟΝΟΜΑ");
+	Name.setForeground(new Color(255, 215, 0));
+	Name.setFont(new Font("SansSerif", Font.BOLD, 14));
+	Name.setBounds(31, 292, 103, 30);
+	Panel.add(Name);
+	
+	JLabel Lastname = new JLabel("ΕΠΙΘΕΤΟ");
+	Lastname.setForeground(new Color(255, 215, 0));
+	Lastname.setFont(new Font("SansSerif", Font.BOLD, 14));
+	Lastname.setBounds(166, 292, 103, 30);
+	Panel.add(Lastname);
+	
+	JLabel Salary = new JLabel("ΜΙΣΘΟΣ");
+	Salary.setForeground(new Color(255, 215, 0));
+	Salary.setFont(new Font("SansSerif", Font.BOLD, 14));
+	Salary.setBounds(308, 292, 103, 30);
+	Panel.add(Salary);
+		
+	Section = new JTextField();
+	Section.setForeground(Color.BLACK);
+	Section.setFont(new Font("SansSerif", Font.BOLD, 12));
+	Section.setColumns(10);
+	Section.setBackground(new Color(0, 206, 209));
+	Section.setBounds(431, 333, 114, 35);
+	Panel.add(Section);	
+	
+	JButton ExitButton = new JButton("ΕΞΟΔΟΣ");
+	ExitButton.setForeground(new Color(0, 0, 255));
+	ExitButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+	ExitButton.setBounds(623, 423, 142, 35);
+	Panel.add(ExitButton);
+	
+	JScrollPane scrollPane_2 = new JScrollPane();
+	scrollPane_2.setBounds(257, 65, 435, 116);
+	Panel.add(scrollPane_2);
+	
+	JList<Object> HRL_1 = new JList<Object>();
+	scrollPane_2.setViewportView(HRL_1);
+		
+	HRL_1.setBackground(new Color(176, 224, 230));
+			
+	JComboBox<String> comboBox = new JComboBox<String>();
+	comboBox.setBackground(new Color(0, 206, 209));
+	comboBox.setForeground(new Color(0, 0, 0));
+	comboBox.setBounds(29, 69, 188, 20);
+	Panel.add(comboBox);
+	
+	try{
+		java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hrm","root","root");
+		String query="Select section From Sections";
+		PreparedStatement prepareStat=(PreparedStatement) conn.prepareStatement(query);					
+	    ResultSet rs = prepareStat.executeQuery();	  	
+	    while(rs.next()){
+	    	comboBox.addItem(rs.getString("Section"));	    		    	
+	        }
+	    rs.close();  
+	    conn.close();	
+	}catch (Exception ex){
+		
+		JOptionPane.showMessageDialog(null, ex);
+	}
+	
+	JLabel label_1 = new JLabel("ID  Επώνυμο    Όνομα   Μισθός   Αξιολόγηση   ID Τμήματος");
+	label_1.setForeground(new Color(255, 215, 0));
+	label_1.setFont(new Font("SansSerif", Font.BOLD, 14));
+	label_1.setBounds(257, 35, 435, 30);
+	Panel.add(label_1);
+	
+	JLabel label = new JLabel("ID ΤΜΗΜΑΤΟΣ");
+	label.setForeground(new Color(255, 215, 0));
+	label.setFont(new Font("SansSerif", Font.BOLD, 14));
+	label.setBounds(431, 292, 114, 30);
+	Panel.add(label);
+	
+	JButton Load = new JButton("ΕΜΦΑΝΙΣΗ");
+	Load.setForeground(new Color(0, 0, 255));
+	Load.setFont(new Font("SansSerif", Font.BOLD, 14));
+	Load.setBounds(50, 103, 142, 35);
+	Panel.add(Load);
+	Load.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			try{
+				
+				String item = comboBox.getSelectedItem().toString();			
+				java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hrm","root","root");
+				String query="Select LastName,FirstName,Salary,rate,idemployee,a.IDsection From Employee as a inner join sections as b "
+						+ "on a.IDsection=b.IDsection where b.Section='"+item+"'";
+				PreparedStatement prepareStat=(PreparedStatement) conn.prepareStatement(query);
+				ResultSet rs=prepareStat.executeQuery();	
+				Statement stat = conn.createStatement();	  	
+			    DefaultListModel<Object> DLM = new DefaultListModel<Object>();
+				while(rs.next()){
+					
+					hr[j][0]=rs.getString("idemployee");
+					hr[j][1]=rs.getString("LastName");
+					hr[j][2]=rs.getString("FirstName");
+					hr[j][3]=rs.getString("Salary");
+					hr[j][4]=rs.getString("rate");				
+					hr[j][5]=rs.getString("IDsection");
+					Lista=hr[j][0]+"      "+hr[j][1]+"       "+hr[j][2]+"     "+hr[j][3] +"     "+hr[j][4]+ "      "+hr[j][5];
+					DLM.addElement(Lista);
+					HRJlist[j]=j;
+					j=j+1;				
+				}
+			
+				HRL_1.setModel(DLM);
+				prepareStat.close();
+				rs.close();	
+			    stat.close();
+			    conn.close();			
+			}catch (Exception ex){				
+				JOptionPane.showMessageDialog(null, ex);
+			}
+			
+		}
+	});
+		
+	JButton CButton = new JButton("ΕΠΕΞΕΡΓΑΣΙΑ");
+	CButton.setForeground(new Color(0, 0, 255));
+	CButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	CButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+	CButton.setBounds(623, 290, 142, 35);
+	Panel.add(CButton);
+	CButton.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+
+			selected = (String) HRL_1.getSelectedValue();		
+			String[] value = selected.split("\\s+");
+			String name = FirstNametxt.getText();
+			String Lastname = LastNameTxt.getText();
+			String salar = Salarytxt.getText();
+			String IDsection = Section.getText();
+
+			try{				
+				java.sql.Connection conn1 = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hrm","root","root");
+				String quer="UPDATE employee  SET FirstName='"+name+"',LastName='"+Lastname+"',Salary='"+salar+"',IDsection='"+IDsection+"' WHERE idemployee='"+value[0]+"'";
+				PreparedStatement ps=(PreparedStatement) conn1.prepareStatement(quer);
+				ps.executeUpdate();
+				ps.close();											
+				JOptionPane.showMessageDialog(null, "Μόλις έγινε η Επεξεργασία !");		
+			    conn1.close();
+			    FirstNametxt.setText("");
+			    LastNameTxt.setText("");
+			    Salarytxt.setText("");
+			    Section.setText("");				  			
+				}catch (Exception ex){
+					
+					JOptionPane.showMessageDialog(null, "Αποτυχία Επεξεργασίας δεδομένων "+sections+" !");			
+				}}
+	
+	});
+	JButton DelButton = new JButton("ΔΙΑΓΡΑΦΗ");
+	DelButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {			
+			selected = (String) HRL_1.getSelectedValue();		
+			String[] value = selected.split("\\s+");
+			try{
+				
+				java.sql.Connection conn1 = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hrm","root","root");
+				String query="Delete from employee where (idemployee='"+value[0]+"') ";
+				PreparedStatement ps=(PreparedStatement) conn1.prepareStatement(query);
+				ps.executeUpdate();
+				ps.close();											
+				JOptionPane.showMessageDialog(null, "Μόλις έγινε διαγραφή !");		
+				    conn1.close();				
+				}catch (Exception ex){				
+					JOptionPane.showMessageDialog(null, "Αποτυχία Διαγραφής "+sections+" !");			
+				}}		
+	});
+		
+	JButton AddButton = new JButton("ΠΡΟΣΘΗΚΗ");
+	AddButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+				
+			try{			
+				java.sql.Connection conn1 = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hrm","root","root");
+				String query4="INSERT INTO Employee (FirstName,LastName,Salary,IDsection) "
+						+ "values (?, ?, ? , ?)";
+									
+					PreparedStatement prepareStat=(PreparedStatement) conn1.prepareStatement(query4);
+					prepareStat.setString(1,FirstNametxt.getText());
+					prepareStat.setString(2,LastNameTxt.getText());
+					prepareStat.setString(3,Salarytxt.getText());
+					prepareStat.setString(4,Section.getText());
+					
+					prepareStat.executeUpdate();				
+					JOptionPane.showMessageDialog(null, "Καταχωρήθηκαν Τα Στοιχεία!");
+					FirstNametxt.setText("");
+					LastNameTxt.setText("");
+					Salarytxt.setText("");	
+					Section.setText("");	
+					prepareStat.close();
+				    conn1.close();
+				}catch (Exception e){
+					JOptionPane.showMessageDialog(null, "Λάθος Στοιχεία. Δώσε σωστό ID Τμήματος ");			
+				}}
+	});
+			
+	DelButton.setForeground(new Color(0, 0, 255));
+	DelButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+	DelButton.setBounds(623, 377, 142, 35);
+	Panel.add(DelButton);
+		
+	AddButton.setForeground(new Color(0, 0, 255));
+	AddButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+	AddButton.setBounds(623, 332, 142, 35);
+	Panel.add(AddButton);
+	
+	JLabel lblNewLabel = new JLabel("BackGround image");
+	lblNewLabel.setIcon(new ImageIcon("C:\\Users\\User\\Desktop\\abstract_color_background_picture_8016-wide.jpg"));
+	lblNewLabel.setBounds(0, 0, 809, 483);
+	Panel.add(lblNewLabel);
+	
+	ExitButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {			
+			dispose();
+		}
+	});
+			
+}
+}
+

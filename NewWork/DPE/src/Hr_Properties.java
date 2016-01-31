@@ -1,0 +1,90 @@
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+
+public class Hr_Properties extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel Panel;
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Hr_Properties window = new Hr_Properties();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	public Hr_Properties() {
+		Hr_Properties1();		
+	}
+	
+	private void Hr_Properties1() {
+
+		setTitle("идиотгтес еяцафолемоу");
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(150, 150, 360, 330);
+		Panel = new JPanel();
+		Panel.setBackground(new Color(255, 255, 255));
+			
+		Panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		setContentPane(Panel);
+		Panel.setLayout(null);
+			
+		JButton  CreateButton= new JButton("дглиоуяциа/диацяажг");
+		CreateButton.setForeground(new Color(0, 0, 255));
+		
+		CreateButton.setFont(new Font("Serif", Font.CENTER_BASELINE, 15));
+		CreateButton.setBounds(51, 36, 240, 50);
+		CreateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Create cf = new Create();
+				cf.setVisible(true);
+			}
+		});
+		Panel.add(CreateButton);
+		
+		
+		JButton  Editbutton= new JButton("епенеяцасиа");
+		Editbutton.setForeground(new Color(0, 0, 255));		
+		Editbutton.setFont(new Font("Serif", Font.CENTER_BASELINE, 15));
+		Editbutton.setBounds(90, 113, 158, 50);
+		Editbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Edit edit1 = new Edit();
+				edit1.setVisible(true);
+			}
+		});
+		Panel.add(Editbutton);
+				
+		JButton ExitButton = new JButton("енодос");
+		ExitButton.setForeground(new Color(0, 0, 255));	
+		ExitButton.setFont(new Font("Serif", Font.CENTER_BASELINE, 15));
+		ExitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		ExitButton.setBounds(90, 191, 158, 50);
+		Panel.add(ExitButton);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\User\\Desktop\\1797990.jpg"));
+		lblNewLabel.setBounds(0, 0, 344, 291);
+		Panel.add(lblNewLabel);
+			
+	}	
+}
